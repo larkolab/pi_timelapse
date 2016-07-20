@@ -42,4 +42,6 @@ while True:
         set_pixel(led,255,255,255)
         show()
         sleep(sleep_step)
+        set_pixel(led,0,0,0)
+        show()
 
