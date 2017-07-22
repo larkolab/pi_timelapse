@@ -1,0 +1,860 @@
+[
+    {
+        "id": "8d8d6e09.46a0a8",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "bc0ddf3b.c0a03",
+        "type": "ui_button",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "group": "fe905945.0ddf4",
+        "order": 5,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Clic!",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 70,
+        "y": 80,
+        "wires": [
+            [
+                "cf1e8221.6d7f08"
+            ]
+        ]
+    },
+    {
+        "id": "bf71078c.4dead8",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "e74bcedf.fcfa58"
+            ]
+        ]
+    },
+    {
+        "id": "e74bcedf.fcfa58",
+        "type": "ui_template",
+        "z": "8d8d6e09.46a0a8",
+        "group": "fe905945.0ddf4",
+        "name": "",
+        "order": 7,
+        "width": "0",
+        "height": "0",
+        "format": "<div ng-bind-html=\"msg.payload\"></div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 660,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f370bf45.a79748",
+        "type": "ui_template",
+        "z": "8d8d6e09.46a0a8",
+        "group": "fe905945.0ddf4",
+        "name": "",
+        "order": 8,
+        "width": "6",
+        "height": "10",
+        "format": "<img ng-src=\"{{(msg.payload)}}\" height=\"24px\"/>&nbsp;",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "templateScope": "local",
+        "x": 660,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d2aaa80.06fcc4",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "topic": "",
+        "payload": "/photo.jpg",
+        "payloadType": "str",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 290,
+        "y": 440,
+        "wires": [
+            [
+                "2b9332c8.495b0e"
+            ]
+        ]
+    },
+    {
+        "id": "2b9332c8.495b0e",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "refresh?",
+        "func": "var refresh = flow.get('refresh') || false;\n\nif (refresh === true)\n{\n    msg.payload = '/' + flow.get('last_filename') || 'photo.jpg';\n    console.log('refresh: ' + msg.payload);\n    flow.set('refresh', false);\n    return msg;\n}\nelse\n{\n    //console.log('no refresh');\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "f370bf45.a79748",
+                "20ca1c68.58e854"
+            ]
+        ]
+    },
+    {
+        "id": "20ca1c68.58e854",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 670,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "60d248be.ce464",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "timelapse",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 110,
+        "y": 160,
+        "wires": [
+            [
+                "397ffb47.f62e04"
+            ]
+        ]
+    },
+    {
+        "id": "2d4cdd1e.ea6b52",
+        "type": "ui_switch",
+        "z": "8d8d6e09.46a0a8",
+        "name": "timelpase_on",
+        "label": "",
+        "group": "fe905945.0ddf4",
+        "order": 3,
+        "width": "1",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "f6423f41.45cce8"
+            ]
+        ]
+    },
+    {
+        "id": "f6423f41.45cce8",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "Enable timelapse",
+        "func": "flow.set('timelapse_auto', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 240,
+        "wires": [
+            [
+                "40c9d290.aca2bc"
+            ]
+        ]
+    },
+    {
+        "id": "397ffb47.f62e04",
+        "type": "switch",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "property": "timelapse_auto",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 1,
+        "x": 250,
+        "y": 160,
+        "wires": [
+            [
+                "a7741110.ab432"
+            ]
+        ]
+    },
+    {
+        "id": "40c9d290.aca2bc",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 770,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "892ae648.ce893",
+        "type": "ui_text_input",
+        "z": "8d8d6e09.46a0a8",
+        "name": "prefix",
+        "label": "",
+        "group": "fe905945.0ddf4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": "0",
+        "topic": "",
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "5f2bb025.1dd2c8"
+            ]
+        ]
+    },
+    {
+        "id": "5f2bb025.1dd2c8",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "set file prefix",
+        "func": "flow.set('prefix', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 510,
+        "y": 280,
+        "wires": [
+            [
+                "591135ab.5fc5a4"
+            ]
+        ]
+    },
+    {
+        "id": "591135ab.5fc5a4",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 710,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b6ff8ecc.7d3618",
+        "type": "ui_numeric",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "label": "interval",
+        "group": "fe905945.0ddf4",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": true,
+        "topic": "",
+        "format": "{{value}}",
+        "min": "10",
+        "max": "3600",
+        "step": 1,
+        "x": 380,
+        "y": 320,
+        "wires": [
+            [
+                "e419d549.0dc1f8"
+            ]
+        ]
+    },
+    {
+        "id": "a7741110.ab432",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "delay",
+        "func": "var count = flow.get('count') || 0;\nvar interval = flow.get('interval') || 10;\n\ncount = count + 1;\nif (count < interval)\n{\n    flow.set('count', count);\n    return null;\n}\n\nflow.set('count', 0);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "caf493c0.fce7b",
+                "cf1e8221.6d7f08"
+            ]
+        ]
+    },
+    {
+        "id": "caf493c0.fce7b",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 550,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e419d549.0dc1f8",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "set interval",
+        "func": "flow.set('interval', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 320,
+        "wires": [
+            [
+                "bda91734.e8813"
+            ]
+        ]
+    },
+    {
+        "id": "bda91734.e8813",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 710,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8bbb3c99.346478",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "Set default",
+        "topic": "",
+        "payload": "10",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 230,
+        "y": 320,
+        "wires": [
+            [
+                "b6ff8ecc.7d3618"
+            ]
+        ]
+    },
+    {
+        "id": "e8e40b71.e53b08",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "Set default",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "2d4cdd1e.ea6b52"
+            ]
+        ]
+    },
+    {
+        "id": "602a6ac1.b78f0c",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "topic": "",
+        "payload": "timelapse",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 241,
+        "y": 279,
+        "wires": [
+            [
+                "892ae648.ce893"
+            ]
+        ]
+    },
+    {
+        "id": "77225511.4cde84",
+        "type": "exec",
+        "z": "8d8d6e09.46a0a8",
+        "command": "raspistill",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "oldrc": false,
+        "name": "",
+        "x": 860,
+        "y": 40,
+        "wires": [
+            [
+                "70d238b0.080d4"
+            ],
+            [
+                "70d238b0.080d4"
+            ],
+            [
+                "2668d146.206f7e"
+            ]
+        ]
+    },
+    {
+        "id": "70d238b0.080d4",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 1230,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "cf1e8221.6d7f08",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "filename",
+        "func": "var prefix = flow.get('prefix') || 'photo'\n\nvar filename = prefix + \"_\" + Date.now() + \".jpg\";\nvar filepath = \"/home/pi/.node-red/public/\"\n\nmsg.payload = filepath + filename;\n\nflow.set('last_filename', filename);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "a45c4353.5bb72"
+            ]
+        ]
+    },
+    {
+        "id": "2668d146.206f7e",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "refresh ON",
+        "func": "if (msg.payload.code === 0)\n{\n    flow.set('refresh', true);\n    msg_status = { payload: \"ready\" };\n}\nelse\n{\n    msg_status = { payload: \"ERROR\" };\n}\n\nreturn [msg, msg_status];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 1030,
+        "y": 80,
+        "wires": [
+            [
+                "70d238b0.080d4"
+            ],
+            [
+                "b17e8c4f.b26c18"
+            ]
+        ]
+    },
+    {
+        "id": "f931e972.0295a",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "refresh OFF",
+        "func": "flow.set('refresh', false);\n\nmsg_status = { payload: \"wait...\" };\n\nreturn [msg, msg_status];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 690,
+        "y": 80,
+        "wires": [
+            [
+                "77225511.4cde84"
+            ],
+            [
+                "b17e8c4f.b26c18"
+            ]
+        ]
+    },
+    {
+        "id": "a45c4353.5bb72",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "params",
+        "func": "var filename = '-o ' + msg.payload;\nvar resolution = '-w 1920 -h 1440';\nvar quality = '-q 100';\nvar annotate = '-a 12 -ae 80'; // date + time (size 80)\n\nmsg.payload = ' ' + resolution + ' ' + filename + ' ' + quality + ' ' + annotate;\n\nconsole.log('picamera: raspistill' + msg.payload);\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 80,
+        "wires": [
+            [
+                "f931e972.0295a"
+            ]
+        ]
+    },
+    {
+        "id": "b17e8c4f.b26c18",
+        "type": "ui_text",
+        "z": "8d8d6e09.46a0a8",
+        "group": "fe905945.0ddf4",
+        "order": 6,
+        "width": "2",
+        "height": "1",
+        "name": "Status",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 1250,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "812b9b03.d48f48",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "topic": "",
+        "payload": "ready",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 1110,
+        "y": 180,
+        "wires": [
+            [
+                "b17e8c4f.b26c18"
+            ]
+        ]
+    },
+    {
+        "id": "af444fb9.aa407",
+        "type": "ui_button",
+        "z": "8d8d6e09.46a0a8",
+        "name": "CleanAll",
+        "group": "96fedb9.a525828",
+        "order": 0,
+        "width": "4",
+        "height": "1",
+        "passthru": false,
+        "label": "Clean All",
+        "color": "",
+        "bgcolor": "red",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "x": 300,
+        "y": 600,
+        "wires": [
+            [
+                "a2666f0b.f8aee8"
+            ]
+        ]
+    },
+    {
+        "id": "8b1e8af.4db8e78",
+        "type": "exec",
+        "z": "8d8d6e09.46a0a8",
+        "command": "rm",
+        "addpay": false,
+        "append": "/home/pi/.node-red/public/*",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 570,
+        "y": 540,
+        "wires": [
+            [
+                "7099262b.5c749"
+            ],
+            [
+                "7099262b.5c749"
+            ],
+            [
+                "a0da60ef.e8702"
+            ]
+        ]
+    },
+    {
+        "id": "90bba9a9.e2374",
+        "type": "ui_text",
+        "z": "8d8d6e09.46a0a8",
+        "group": "96fedb9.a525828",
+        "order": 5,
+        "width": "2",
+        "height": "1",
+        "name": "Status",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 890,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a2666f0b.f8aee8",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "set status",
+        "func": "msg_status = { payload: 'wait...' };\n\nreturn [msg, msg_status];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 440,
+        "y": 600,
+        "wires": [
+            [
+                "8b1e8af.4db8e78"
+            ],
+            [
+                "90bba9a9.e2374"
+            ]
+        ]
+    },
+    {
+        "id": "a0da60ef.e8702",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "set status",
+        "func": "if (msg.payload.code === 0)\n{\n    msg_status = { payload: \"ready\" };\n}\nelse\n{\n    msg_status = { payload: \"ERROR\" };\n}\n\nreturn [msg, msg_status];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 700,
+        "y": 580,
+        "wires": [
+            [
+                "7099262b.5c749"
+            ],
+            [
+                "90bba9a9.e2374"
+            ]
+        ]
+    },
+    {
+        "id": "7099262b.5c749",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 890,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "4f0778a9.c9e9e",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "topic": "",
+        "payload": "ready",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 710,
+        "y": 640,
+        "wires": [
+            [
+                "90bba9a9.e2374"
+            ]
+        ]
+    },
+    {
+        "id": "416b30cc.084328",
+        "type": "rpi-gpio in",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "pin": "7",
+        "intype": "tri",
+        "debounce": "10",
+        "read": true,
+        "x": 70,
+        "y": 20,
+        "wires": [
+            [
+                "dada8471.6f6c48"
+            ]
+        ]
+    },
+    {
+        "id": "55661c47.5e666c",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 430,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "dada8471.6f6c48",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "Motion detect",
+        "func": "var motion_sense = flow.get('motion') || false;\nif (motion_sense === false)\n{\n    return null;\n}\n\nif (msg.payload === 1) // motion detected\n{\n    console.log(\"??\");\n    msg.payload = flow.get('refresh') || true;\n    return msg;\n}\nelse\n{\n    return null;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 220,
+        "y": 20,
+        "wires": [
+            [
+                "55661c47.5e666c",
+                "cf1e8221.6d7f08"
+            ]
+        ]
+    },
+    {
+        "id": "50e592e0.67f30c",
+        "type": "ui_switch",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "label": "Motion",
+        "group": "fe905945.0ddf4",
+        "order": 4,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "e4ba0b52.39587"
+            ]
+        ]
+    },
+    {
+        "id": "a0e9d3d9.fd2e9",
+        "type": "inject",
+        "z": "8d8d6e09.46a0a8",
+        "name": "Set default",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 230,
+        "y": 360,
+        "wires": [
+            [
+                "50e592e0.67f30c"
+            ]
+        ]
+    },
+    {
+        "id": "e4ba0b52.39587",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "set motion sensing",
+        "func": "flow.set('motion', msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "c4b244dd.7b4088"
+            ]
+        ]
+    },
+    {
+        "id": "c4b244dd.7b4088",
+        "type": "debug",
+        "z": "8d8d6e09.46a0a8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 710,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "fe905945.0ddf4",
+        "type": "ui_group",
+        "z": "",
+        "name": "Timelapse",
+        "tab": "b9fe7b7.9acbe08",
+        "disp": false,
+        "width": "6"
+    },
+    {
+        "id": "96fedb9.a525828",
+        "type": "ui_group",
+        "z": "",
+        "name": "Timelapse Admin",
+        "tab": "cb40e79a.bd9908",
+        "disp": true,
+        "width": "6"
+    },
+    {
+        "id": "b9fe7b7.9acbe08",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "cb40e79a.bd9908",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Clean",
+        "icon": "dashboard",
+        "order": 2
+    }
+]
