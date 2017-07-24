@@ -21,8 +21,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 70,
-        "y": 80,
+        "x": 110,
+        "y": 100,
         "wires": [
             [
                 "cf1e8221.6d7f08"
@@ -40,8 +40,8 @@
         "repeat": "1",
         "crontab": "",
         "once": false,
-        "x": 290,
-        "y": 400,
+        "x": 370,
+        "y": 480,
         "wires": [
             [
                 "e74bcedf.fcfa58"
@@ -61,8 +61,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 660,
-        "y": 400,
+        "x": 740,
+        "y": 480,
         "wires": [
             []
         ]
@@ -80,8 +80,8 @@
         "storeOutMessages": true,
         "fwdInMessages": true,
         "templateScope": "local",
-        "x": 660,
-        "y": 440,
+        "x": 740,
+        "y": 520,
         "wires": [
             []
         ]
@@ -97,8 +97,8 @@
         "repeat": "1",
         "crontab": "",
         "once": false,
-        "x": 290,
-        "y": 440,
+        "x": 370,
+        "y": 520,
         "wires": [
             [
                 "2b9332c8.495b0e"
@@ -113,8 +113,8 @@
         "func": "var refresh = flow.get('refresh') || false;\n\nif (refresh === true)\n{\n    msg.payload = '/' + flow.get('last_filename') || 'photo.jpg';\n    console.log('refresh: ' + msg.payload);\n    flow.set('refresh', false);\n    return msg;\n}\nelse\n{\n    //console.log('no refresh');\n    return null;\n}",
         "outputs": 1,
         "noerr": 0,
-        "x": 460,
-        "y": 440,
+        "x": 540,
+        "y": 520,
         "wires": [
             [
                 "f370bf45.a79748",
@@ -130,8 +130,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 670,
-        "y": 480,
+        "x": 750,
+        "y": 560,
         "wires": []
     },
     {
@@ -145,8 +145,8 @@
         "repeat": "1",
         "crontab": "",
         "once": false,
-        "x": 110,
-        "y": 160,
+        "x": 90,
+        "y": 180,
         "wires": [
             [
                 "397ffb47.f62e04"
@@ -175,8 +175,8 @@
         "offvalueType": "num",
         "officon": "",
         "offcolor": "",
-        "x": 400,
-        "y": 240,
+        "x": 480,
+        "y": 320,
         "wires": [
             [
                 "f6423f41.45cce8"
@@ -191,8 +191,8 @@
         "func": "flow.set('timelapse_auto', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 590,
-        "y": 240,
+        "x": 670,
+        "y": 320,
         "wires": [
             [
                 "40c9d290.aca2bc"
@@ -215,8 +215,8 @@
         ],
         "checkall": "true",
         "outputs": 1,
-        "x": 250,
-        "y": 160,
+        "x": 230,
+        "y": 180,
         "wires": [
             [
                 "a7741110.ab432"
@@ -231,8 +231,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 770,
-        "y": 240,
+        "x": 850,
+        "y": 320,
         "wires": []
     },
     {
@@ -249,8 +249,8 @@
         "mode": "text",
         "delay": "0",
         "topic": "",
-        "x": 370,
-        "y": 280,
+        "x": 450,
+        "y": 360,
         "wires": [
             [
                 "5f2bb025.1dd2c8"
@@ -265,8 +265,8 @@
         "func": "flow.set('prefix', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 510,
-        "y": 280,
+        "x": 590,
+        "y": 360,
         "wires": [
             [
                 "591135ab.5fc5a4"
@@ -281,8 +281,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 710,
-        "y": 280,
+        "x": 790,
+        "y": 360,
         "wires": []
     },
     {
@@ -301,8 +301,8 @@
         "min": "10",
         "max": "3600",
         "step": 1,
-        "x": 380,
-        "y": 320,
+        "x": 460,
+        "y": 400,
         "wires": [
             [
                 "e419d549.0dc1f8"
@@ -317,8 +317,8 @@
         "func": "var count = flow.get('count') || 0;\nvar interval = flow.get('interval') || 10;\n\ncount = count + 1;\nif (count < interval)\n{\n    flow.set('count', count);\n    return null;\n}\n\nflow.set('count', 0);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 370,
-        "y": 160,
+        "x": 350,
+        "y": 180,
         "wires": [
             [
                 "caf493c0.fce7b",
@@ -334,8 +334,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 550,
-        "y": 160,
+        "x": 530,
+        "y": 180,
         "wires": []
     },
     {
@@ -346,8 +346,8 @@
         "func": "flow.set('interval', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 320,
+        "x": 610,
+        "y": 400,
         "wires": [
             [
                 "bda91734.e8813"
@@ -362,8 +362,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 710,
-        "y": 320,
+        "x": 790,
+        "y": 400,
         "wires": []
     },
     {
@@ -377,8 +377,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 230,
-        "y": 320,
+        "x": 310,
+        "y": 400,
         "wires": [
             [
                 "b6ff8ecc.7d3618"
@@ -396,8 +396,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 230,
-        "y": 240,
+        "x": 310,
+        "y": 320,
         "wires": [
             [
                 "2d4cdd1e.ea6b52"
@@ -415,8 +415,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 241,
-        "y": 279,
+        "x": 321,
+        "y": 359,
         "wires": [
             [
                 "892ae648.ce893"
@@ -434,7 +434,7 @@
         "timer": "10",
         "oldrc": false,
         "name": "",
-        "x": 860,
+        "x": 980,
         "y": 40,
         "wires": [
             [
@@ -456,7 +456,7 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 1230,
+        "x": 1310,
         "y": 40,
         "wires": []
     },
@@ -468,8 +468,8 @@
         "func": "var prefix = flow.get('prefix') || 'photo'\n\nvar filename = prefix + \"_\" + Date.now() + \".jpg\";\nvar filepath = \"/home/pi/.node-red/public/\"\n\nmsg.payload = filepath + filename;\n\nflow.set('last_filename', filename);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 400,
-        "y": 80,
+        "x": 520,
+        "y": 100,
         "wires": [
             [
                 "a45c4353.5bb72"
@@ -484,7 +484,7 @@
         "func": "if (msg.payload.code === 0)\n{\n    flow.set('refresh', true);\n    msg_status = { payload: \"ready\" };\n}\nelse\n{\n    msg_status = { payload: \"ERROR\" };\n}\n\nreturn [msg, msg_status];",
         "outputs": "2",
         "noerr": 0,
-        "x": 1030,
+        "x": 1150,
         "y": 80,
         "wires": [
             [
@@ -503,8 +503,8 @@
         "func": "flow.set('refresh', false);\n\nmsg_status = { payload: \"wait...\" };\n\nreturn [msg, msg_status];",
         "outputs": "2",
         "noerr": 0,
-        "x": 690,
-        "y": 80,
+        "x": 810,
+        "y": 100,
         "wires": [
             [
                 "77225511.4cde84"
@@ -519,11 +519,11 @@
         "type": "function",
         "z": "8d8d6e09.46a0a8",
         "name": "params",
-        "func": "var filename = '-o ' + msg.payload;\nvar resolution = '-w 1920 -h 1440';\nvar quality = '-q 100';\nvar annotate = '-a 12 -ae 80'; // date + time (size 80)\n\nmsg.payload = ' ' + resolution + ' ' + filename + ' ' + quality + ' ' + annotate;\n\nconsole.log('picamera: raspistill' + msg.payload);\n\nreturn msg;",
+        "func": "var filename = '-o ' + msg.payload;\nvar resolution = '-w 1920 -h 1440';\nvar annotate = '-a 12 -ae 80'; // date + time (size 80)\nvar misc = '-t 1'; // 1s before taking the photo\n\nmsg.payload = ' ' + resolution + ' ' + filename + ' ' + misc + ' ' + annotate;\n\nconsole.log('picamera: raspistill' + msg.payload);\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 540,
-        "y": 80,
+        "x": 660,
+        "y": 100,
         "wires": [
             [
                 "f931e972.0295a"
@@ -542,8 +542,8 @@
         "label": "",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1250,
-        "y": 140,
+        "x": 1290,
+        "y": 120,
         "wires": []
     },
     {
@@ -557,8 +557,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 1110,
-        "y": 180,
+        "x": 1150,
+        "y": 160,
         "wires": [
             [
                 "b17e8c4f.b26c18"
@@ -582,8 +582,8 @@
         "payload": "true",
         "payloadType": "bool",
         "topic": "",
-        "x": 300,
-        "y": 600,
+        "x": 380,
+        "y": 680,
         "wires": [
             [
                 "a2666f0b.f8aee8"
@@ -601,8 +601,8 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 570,
-        "y": 540,
+        "x": 650,
+        "y": 620,
         "wires": [
             [
                 "7099262b.5c749"
@@ -627,8 +627,8 @@
         "label": "",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 890,
-        "y": 620,
+        "x": 970,
+        "y": 700,
         "wires": []
     },
     {
@@ -639,8 +639,8 @@
         "func": "msg_status = { payload: 'wait...' };\n\nreturn [msg, msg_status];",
         "outputs": "2",
         "noerr": 0,
-        "x": 440,
-        "y": 600,
+        "x": 520,
+        "y": 680,
         "wires": [
             [
                 "8b1e8af.4db8e78"
@@ -658,8 +658,8 @@
         "func": "if (msg.payload.code === 0)\n{\n    msg_status = { payload: \"ready\" };\n}\nelse\n{\n    msg_status = { payload: \"ERROR\" };\n}\n\nreturn [msg, msg_status];",
         "outputs": "2",
         "noerr": 0,
-        "x": 700,
-        "y": 580,
+        "x": 780,
+        "y": 660,
         "wires": [
             [
                 "7099262b.5c749"
@@ -677,8 +677,8 @@
         "active": false,
         "console": "false",
         "complete": "false",
-        "x": 890,
-        "y": 540,
+        "x": 970,
+        "y": 620,
         "wires": []
     },
     {
@@ -692,8 +692,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 710,
-        "y": 640,
+        "x": 790,
+        "y": 720,
         "wires": [
             [
                 "90bba9a9.e2374"
@@ -709,7 +709,7 @@
         "intype": "tri",
         "debounce": "10",
         "read": true,
-        "x": 70,
+        "x": 110,
         "y": 20,
         "wires": [
             [
@@ -725,8 +725,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 430,
-        "y": 20,
+        "x": 570,
+        "y": 60,
         "wires": []
     },
     {
@@ -734,15 +734,16 @@
         "type": "function",
         "z": "8d8d6e09.46a0a8",
         "name": "Motion detect",
-        "func": "var motion_sense = flow.get('motion') || false;\nif (motion_sense === false)\n{\n    return null;\n}\n\nif (msg.payload === 1) // motion detected\n{\n    console.log(\"??\");\n    msg.payload = flow.get('refresh') || true;\n    return msg;\n}\nelse\n{\n    return null;\n}",
+        "func": "// Is motion detection enabled?\nvar motion_sense = flow.get('motion') || false;\nif (motion_sense === false)\n{\n    return null;\n}\n\n// notify motion detection\nif (msg.payload === 1) // motion detected\n{\n    now = Date.now();\n    last = flow.get('debounce') || 0;\n    if ((now - last) > 10000)\n    {\n        console.log('motion detected');\n        msg.payload = flow.get('refresh') || true;\n        flow.set('debounce', now);\n        return msg;\n    }\n}\n\nreturn null;\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 220,
+        "x": 280,
         "y": 20,
         "wires": [
             [
                 "55661c47.5e666c",
-                "cf1e8221.6d7f08"
+                "cf1e8221.6d7f08",
+                "b2d2dd9c.61f82"
             ]
         ]
     },
@@ -768,8 +769,8 @@
         "offvalueType": "bool",
         "officon": "",
         "offcolor": "",
-        "x": 370,
-        "y": 360,
+        "x": 450,
+        "y": 440,
         "wires": [
             [
                 "e4ba0b52.39587"
@@ -787,8 +788,8 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "x": 230,
-        "y": 360,
+        "x": 310,
+        "y": 440,
         "wires": [
             [
                 "50e592e0.67f30c"
@@ -803,8 +804,8 @@
         "func": "flow.set('motion', msg.payload);\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 530,
-        "y": 360,
+        "x": 610,
+        "y": 440,
         "wires": [
             [
                 "c4b244dd.7b4088"
@@ -819,9 +820,38 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 710,
-        "y": 360,
+        "x": 790,
+        "y": 440,
         "wires": []
+    },
+    {
+        "id": "da357183.60c2e8",
+        "type": "pushbullet",
+        "z": "8d8d6e09.46a0a8",
+        "config": "68c9d09e.96095",
+        "pushtype": "note",
+        "title": "",
+        "chan": "",
+        "name": "Pushbullet Tel",
+        "x": 760,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "b2d2dd9c.61f82",
+        "type": "function",
+        "z": "8d8d6e09.46a0a8",
+        "name": "message to pushbullet",
+        "func": "now = new Date();\nmsg.payload = now.toUTCString() + ' - ca a bougé!'\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 540,
+        "y": 20,
+        "wires": [
+            [
+                "da357183.60c2e8"
+            ]
+        ]
     },
     {
         "id": "fe905945.0ddf4",
@@ -840,6 +870,12 @@
         "tab": "cb40e79a.bd9908",
         "disp": true,
         "width": "6"
+    },
+    {
+        "id": "68c9d09e.96095",
+        "type": "pushbullet-config",
+        "z": "",
+        "name": "my pushbullet"
     },
     {
         "id": "b9fe7b7.9acbe08",
